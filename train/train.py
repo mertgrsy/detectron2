@@ -13,8 +13,8 @@ from detectron2.config import get_cfg
 from detectron2.utils.visualizer import Visualizer
 from detectron2.data import MetadataCatalog, DatasetCatalog
 
-register_coco_instances("my_dataset_train", {}, "/Users/mert/Downloads/CocoDengeliSegData/coco_polygons/coco_train_ann.json", "/Users/mert/Downloads/CocoDengeliSegData/train")
-register_coco_instances("my_dataset_val", {}, "/Users/mert/Downloads/CocoDengeliSegData/coco_polygons/coco_val_ann.json", "/Users/mert/Downloads/CocoDengeliSegData/val")
+register_coco_instances("my_dataset_train", {}, "/content/coco_annotation/coco_train.json", "/content/content/Yolov8cropped/train")
+register_coco_instances("my_dataset_val", {}, "/content/coco_annotation/coco_val.json", "/content/content/Yolov8cropped/val")
 
 from detectron2.engine import DefaultTrainer
 
@@ -25,9 +25,9 @@ cfg.DATASETS.VAL= ("my_dataset_val")
 cfg.DATASETS.TEST = ()
 cfg.DATALOADER.NUM_WORKERS = 2
 cfg.MODEL.WEIGHTS = model_zoo.get_checkpoint_url("COCO-InstanceSegmentation/mask_rcnn_R_101_FPN_3x.yaml")  # Let training initialize from model zoo
-cfg.SOLVER.IMS_PER_BATCH = 2  # This is the real "batch size" commonly known to deep learning people
+cfg.SOLVER.IMS_PER_BATCH = 6  # This is the real "batch size" commonly known to deep learning people
 cfg.SOLVER.BASE_LR = 0.00025  # pick a good LR
-cfg.SOLVER.MAX_ITER = 300    # 300 iterations seems good enough for this toy dataset; you will need to train longer for a practical dataset
+cfg.SOLVER.MAX_ITER = 500    # 300 iterations seems good enough for this toy dataset; you will need to train longer for a practical dataset
 cfg.SOLVER.STEPS = []        # do not decay learning rate
 cfg.MODEL.ROI_HEADS.BATCH_SIZE_PER_IMAGE = 128   # The "RoIHead batch size". 128 is faster, and good enough for this toy dataset (default: 512)
 cfg.MODEL.ROI_HEADS.NUM_CLASSES = 1  # only has one class (ballon). (see https://detectron2.readthedocs.io/tutorials/datasets.html#update-the-config-for-new-datasets)
