@@ -1,0 +1,10 @@
+_BASE_: "../COCO-InstanceSegmentation/mask_rcnn_R_101_FPN_3x.yaml"
+MODEL:
+  WEIGHTS: "/Users/mert/Downloads/model_final.pth"
+DATASETS:
+  TEST: ("coco_2017_val_100",)
+TEST:
+  EXPECTED_RESULTS: [["bbox", "AP", 47.34, 0.02], ["segm", "AP",  42.67, 0.02], ["bbox_TTA", "AP", 49.11, 0.02], ["segm_TTA", "AP", 45.04, 0.02]]
+  AUG:
+    ENABLED: True
+    MIN_SIZES: (700, 800)  # to save some time
