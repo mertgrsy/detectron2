@@ -54,6 +54,7 @@ def main() -> None:
     with PathManager.open(args.input, "r") as f:
         predictions = json.load(f)
 
+    predictions = predictions["annotations"]
     pred_by_image = defaultdict(list)
     for p in predictions:
         pred_by_image[p["image_id"]].append(p)
